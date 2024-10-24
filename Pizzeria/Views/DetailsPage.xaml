@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pizzeria.Views.DetailsPage"
+             Title="Processa clienti">
+    <VerticalStackLayout Margin="16">
+        <Label TextColor="Black" FontSize="24" HorizontalOptions="CenterAndExpand">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="CLIENTE: " />
+
+                    <Span Text="{Binding Nclient}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Pizza" VerticalOptions="CenterAndExpand" FontSize="18" Margin="0,0,8,0"/>
+
+            <Picker ItemsSource="{Binding Pizze}" 
+                ItemDisplayBinding="{Binding Nome}" 
+                SelectedItem="{Binding SelectedPizza}"
+                SelectedIndex="{Binding SelectedIndexPicker}"
+                Title="Scegli"
+                FontSize="18"
+                VerticalOptions="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="FedelityID" VerticalOptions="CenterAndExpand" FontSize="18" Margin="0,0,8,0"/>
+
+            <Entry Placeholder="codice cliente" Text="{Binding FedelityId}" VerticalOptions="Center" FontSize="18" Margin="0,0,16,0"/>
+
+            <Button Text="Verifica" Margin="0,0,8,0" Command="{Binding VerifyCommand}"/>
+
+            <Label Text="Error" VerticalOptions="Center" TextColor="Red" IsVisible="{Binding VisibilityError}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="Disabilità" VerticalOptions="CenterAndExpand" FontSize="18" Margin="0,0,8,0"/>
+
+            <CheckBox IsChecked="{Binding Disable}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+            <Label Text="Età" VerticalOptions="CenterAndExpand" FontSize="18" Margin="0,0,8,0"/>
+
+            <Entry Placeholder="Età cliente" Text="{Binding Eta}" VerticalOptions="Center" FontSize="18" Margin="0,0,16,0"/>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="EndAndExpand" Margin="0,64,0,0">
+            <Button Text="CALCOLA" FontSize="24" Margin="32" Command="{Binding CalculateCommand}"/>
+
+            <Entry Placeholder="PREZZO UNITARIO" Text="{Binding UnitPrice}" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="18" Margin="16"/>
+
+            <Entry Placeholder="TOTALE" Text="{Binding TotalPrice}" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="18" Margin="16"/>
+        </StackLayout>
+
+        <Button Text="AVANTI" FontSize="24" Margin="48" Command="{Binding ForwardClientCommand}"/>
+
+        <Button Text="FINE" BackgroundColor="Red" FontSize="24" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" Command="{Binding ExitCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
